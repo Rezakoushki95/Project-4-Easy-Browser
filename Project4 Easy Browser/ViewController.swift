@@ -77,6 +77,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
 	
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 		let url = navigationAction.request.url
+		
 		if let host = url?.host {
 			for website in websites {
 				if host.contains(website) {
@@ -84,9 +85,24 @@ class ViewController: UIViewController, WKNavigationDelegate {
 					return
 				}
 			}
-			
 		}
+		
+		let urlString = url?.absoluteString ?? "Unknown"
+		if urlString != "about:blank" {
+			notAllowedAlert()
+		}
+		
 		decisionHandler(.cancel)
+		
 	}
+	
+	func notAllowedAlert() {
+		let alert = UIAlertController(title: "DENIED", message: "Easy now. You are not allowed to visit this website", preferredStyle: .alert)
+		let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+		alert.addAction(action)
+		present(alert, animated: true, completion: nil)
+	}
+	
+	
 }
 
