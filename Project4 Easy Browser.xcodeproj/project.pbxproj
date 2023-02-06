@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		F5128F3F29909FCE00F1277E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5128F3E29909FCE00F1277E /* AppDelegate.swift */; };
 		F5128F4129909FCE00F1277E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5128F4029909FCE00F1277E /* SceneDelegate.swift */; };
-		F5128F4329909FCE00F1277E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5128F4229909FCE00F1277E /* ViewController.swift */; };
+		F5128F4329909FCE00F1277E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5128F4229909FCE00F1277E /* DetailViewController.swift */; };
 		F5128F4629909FCE00F1277E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5128F4429909FCE00F1277E /* Main.storyboard */; };
 		F5128F4829909FD100F1277E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5128F4729909FD100F1277E /* Assets.xcassets */; };
 		F5128F4B29909FD100F1277E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5128F4929909FD100F1277E /* LaunchScreen.storyboard */; };
+		F5128F532990BAAA00F1277E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5128F522990BAAA00F1277E /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F5128F3B29909FCE00F1277E /* Project4 Easy Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project4 Easy Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5128F3E29909FCE00F1277E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5128F4029909FCE00F1277E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F5128F4229909FCE00F1277E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5128F4229909FCE00F1277E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F5128F4529909FCE00F1277E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5128F4729909FD100F1277E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5128F4A29909FD100F1277E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5128F4C29909FD100F1277E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5128F522990BAAA00F1277E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				F5128F3E29909FCE00F1277E /* AppDelegate.swift */,
 				F5128F4029909FCE00F1277E /* SceneDelegate.swift */,
-				F5128F4229909FCE00F1277E /* ViewController.swift */,
+				F5128F522990BAAA00F1277E /* ViewController.swift */,
+				F5128F4229909FCE00F1277E /* DetailViewController.swift */,
 				F5128F4429909FCE00F1277E /* Main.storyboard */,
 				F5128F4729909FD100F1277E /* Assets.xcassets */,
 				F5128F4929909FD100F1277E /* LaunchScreen.storyboard */,
@@ -138,8 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5128F4329909FCE00F1277E /* ViewController.swift in Sources */,
+				F5128F4329909FCE00F1277E /* DetailViewController.swift in Sources */,
 				F5128F3F29909FCE00F1277E /* AppDelegate.swift in Sources */,
+				F5128F532990BAAA00F1277E /* ViewController.swift in Sources */,
 				F5128F4129909FCE00F1277E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

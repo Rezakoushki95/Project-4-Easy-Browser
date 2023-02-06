@@ -6,105 +6,41 @@
 //
 
 import UIKit
-import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class ViewController: UIViewController {
 	
-	var webView: WKWebView!
-	var progressView: UIProgressView!
+	@IBOutlet weak var tableView: UITableView!
+	
 	var websites = ["apple.com", "hackingwithswift.com"]
 	
-	override func loadView() {
-		super.loadView()
-		webView = WKWebView()
-		webView.navigationDelegate = self
-		view = webView
-	}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		
+		self.tableView.delegate = self
+		self.tableView.dataSource = self
+
+    }
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-				
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
-		navigationController?.navigationBar.backgroundColor = .white
-		
-		let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-		let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
-		let back = UIBarButtonItem(title: "Back", style: .plain, target: webView, action: #selector(webView.goBack))
-		let foward = UIBarButtonItem(title: "Foward", style: .plain, target: webView, action: #selector(webView.goForward))
-		
-		progressView = UIProgressView(progressViewStyle: .default)
-		progressView.sizeToFit()
-		let progressButton = UIBarButtonItem(customView: progressView)
-		
-		
-		toolbarItems = [progressButton, spacer, back, foward, refresh]
-		navigationController?.isToolbarHidden = false
-		
-		webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-		
-		let url = URL(string: "https://" + websites[0])!
-		webView.load(URLRequest(url: url))
-		webView.allowsBackForwardNavigationGestures = true
-		
-		
-	}
-	
-	@objc func openTapped() {
-		let ac = UIAlertController(title: "Open Page", message: nil, preferredStyle: .actionSheet)
-		
-		for website in websites {
-			ac.addAction(UIAlertAction(title: website, style: .default, handler: openPage))
-		}
-		
-		ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-		ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-		present(ac, animated: true)
-	}
-	
-	func openPage(action: UIAlertAction) {
-		guard let actionTitle = action.title else { return }
-		guard let url = URL(string: "https://" + actionTitle) else { return }
-		webView.load(URLRequest(url: url))
-	}
-	
-	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		title = webView.title
-	}
-	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if keyPath == "estimatedProgress" {
-			progressView.progress = Float(webView.estimatedProgress)
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showPage" {
+			let destinationVC = segue.destination as! DetailViewController
+			let selectedIndexPath = tableView.indexPathForSelectedRow
+			destinationVC.website = websites[selectedIndexPath!.row]
 		}
 	}
-	
-	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-		let url = navigationAction.request.url
-		
-		if let host = url?.host {
-			for website in websites {
-				if host.contains(website) {
-					decisionHandler(.allow)
-					return
-				}
-			}
-		}
-		
-		let urlString = url?.absoluteString ?? "Unknown"
-		if urlString != "about:blank" {
-			notAllowedAlert()
-		}
-		
-		decisionHandler(.cancel)
-		
+    
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return websites.count
 	}
 	
-	func notAllowedAlert() {
-		let alert = UIAlertController(title: "DENIED", message: "Easy now. You are not allowed to visit this website", preferredStyle: .alert)
-		let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-		alert.addAction(action)
-		present(alert, animated: true, completion: nil)
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		cell.textLabel?.text = websites[indexPath.row]
+		return cell
 	}
 	
 	
 }
-
